@@ -1,0 +1,12 @@
+"WEB AUDIO API"
+
+How does a computer and other electronic devices percieve/play sound?
+Ans. (Sorce-MDN) sound files are just recordings of sound intensities themselves, which come in from microphones or electric instruments, and get mixed down into a single, complicated wave.Sources provide arrays of sound intensities (samples) at very small timeslices, often tens of thousands of them per second.Here Sources refers to source files of sound.May be a mp3,maybe directly from a stream etc.
+Outputs of these nodes could be linked to inputs of others, which mix or modify these streams of sound samples into different streams. A common modification is multiplying the samples by a value to make them louder or quieter (as is the case with 'GainNode'). Once the sound has been sufficiently processed for the intended effect, it can be linked to the input of a destination ('BaseAudioContext.destination'), which sends the sound to the speakers or headphones. This last connection is only necessary if the user is supposed to hear the audio.
+A simple, typical workflow for web audio would look something like this:
+
+Create audio context
+Inside the context, create sources — such as <audio>, oscillator, stream
+Create effects nodes, such as reverb, biquad filter, panner, compressor
+Choose final destination of audio, for example your system speakers
+Connect the sources up to the effects, and the effects to the destination.

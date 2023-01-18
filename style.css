@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:antiquewhite ;
+    background-image: url(background.jpg);
+    background-size:1366px;
+}
+nav{
+    padding: 5px;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+    list-style-type: none;
+    font-size: 25px;
+    color: white;
+    font-weight: 500;
+}
+nav ul li{
+    padding: 0 10px;
+    margin: 0 10px;
+}
+nav ul li.link{
+    cursor: pointer;
+    transition: all 0.7s ease;
+}
+nav ul li.link:hover{
+    border: 3px solid rgb(94, 209, 255);
+    border-radius: 10%;
+    background-color: rgb(94, 209, 255);
+}
+nav ul img{
+    width: 80px;
+    background:white;
+    border-radius: 50%;
+}
+div.container{
+    width:80vw ;
+    min-height: 75vh;
+    display: flex;
+    box-shadow: 0 0 30px white;
+    margin: 5px auto;
+    border-radius: 12px;
+    padding: 10px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    bottom: 0px;
+    height: 70px;
+    background-color: rgba(238, 130, 238, 0.486);
+    color: rgb(101, 101, 255);
+}
+#ProgressBar{
+    height: 4px;
+    width: 80vw;
+}
+.bottom input{
+    margin: 5px 0px;
+}
+.icons{
+    margin:5px 0px;
+}
+.icons i{
+    margin: 0px 2px;
+    cursor: pointer;
+}
+.songList{
+    width: 50%;
+}
+
+.songList h1{
+    color: white;
+    font-size: 25px;
+    font-style: italic;
+    text-decoration: overline;
+}
+
+
+.songItemsContainer{
+    margin-top:30px;
+    margin-left:20px;
+}
+.songItem{
+    height: 50px;
+    /* width:70% ; */
+    display: flex;
+    background-color: aqua;
+    border-radius:10px;
+    margin: 10px 0px;
+    font-family:'Oswald', sans-serif; 
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-between;
+    color:rgb(175, 53, 175);
+    font-weight: 600;
+}
+.songItem img{
+    height: 50px;
+    border-radius: 10px;
+}
+.timestamp{
+    margin:0px 10px ;
+}
+.timestamp i{
+    cursor: pointer;
+}
+#songInfo{
+    position:absolute;
+    left:10vw;
+}
+#songInfo span{
+    padding:5px 5px ;
+    font-size:25px;
+    color:white;
+    font-family:'Oswald', sans-serif;
+}
+#songInfo img{
+    height: 25px;
+    width: 100px;
+    color: violet;
+    background-color: rgba(238, 130, 238, 0.164);
+    opacity: 0;
+    transition:opacity 0.5s ease-in;
+}
+
+#loop{
+    cursor: pointer;
+    margin-top:13px;
+    position: absolute;
+    right:13vw;
+    padding: 3px;
+    color: black;
+    font-size: 32px;
+    border-radius: 50%;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+#loop:hover{
+    background-color: grey;
+    color: cyan;
+} 
+
+
+@media all and (max-width:425px){
+    .songList{
+        width: 100%;
+    }   
+    .songItem{
+        height: 40px;
+        font-size: 10px;
+    }
+    .songItem img{
+        height: 40px;
+    }
+    #songInfo img{
+        margin-top: 20px;
+        height: 15px;
+        width: 60px;
+    }
+    #loop{
+        font-size: 20px;
+    }
+    .icons i{
+        font-size:25px ;
+    }
+    #songInfo span{
+        display: none;
+    }
+}
