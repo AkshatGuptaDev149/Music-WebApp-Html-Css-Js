@@ -5,9 +5,9 @@ console.log('welcome to our music app')
 var songIndex=0;
 let MasterPlayBtn=document.getElementById('MasterPlay');
 let ProgressBar=document.getElementById('ProgressBar');
+let songItem;
 let loopBtn=document.getElementById('loop');
-let songItem=Array.from(document.getElementsByClassName('songItem'));
-let NumberOfSongItems=songItem.length
+let songItemsContainer=document.getElementById('songItemsContainer');
 let BottomLine=document.getElementById('songInfo');
 let songs=[
     {songName:'Bleach OST Treachery',filePath:'songs/Aizen theme.mp3',coverPath:'coverImages/cover1.png'},
@@ -19,15 +19,39 @@ let songs=[
     {songName:'Bleach TYBW-Scar',filePath:'songs/Bleach TYBW scar.mp3',coverPath:'coverImages/cover4.png'},
     {songName:'Bleach TYBW-Rapport',filePath:'songs/Bleach TYBW rapport.mp3',coverPath:'coverImages/cover4.png'},
     {songName:'Jujutsu Kaisen 0 Ichizu By KingGnu',filePath:'songs/Jujutsu Kaisen 0 Ichizu By KingGnu.mp3',coverPath:'coverImages/cover5.jpg'},
+    {songName:'Something just like this',filePath:'songs/Something just like this.mp3',coverPath:'coverImages/default.png'},
     {songName:'Bleach TYBW number one',filePath:'songs/Bleach TYBW number one.mp3',coverPath:'coverImages/cover4.png'}
 ]
 let audioElement= new Audio(songs[songIndex].filePath);
 
-//Adding cover image sources
+function toArray(x) {
+    for(var i = 0, a = []; i < x.length; i++)
+        a.push(x[i]);
 
-for(let i=0;i<NumberOfSongItems;i++){
-    songItem[i].firstElementChild.setAttribute('src',songs[i].coverPath)
+    return a
 }
+
+//Function for adding songItems
+async function SongAdd(){
+    for(let i=0;i<songs.length;i++){
+        let testAudio=new Audio(songs[i].filePath)
+        testAudio.onloadedmetadata=await (()=>{
+            let Minutes=Math.floor(testAudio.duration/60)
+            let Seconds=(Math.floor(testAudio.duration)%60)
+            let songDuration=Minutes +":"+ (Seconds<10? '0'+Seconds:Seconds)
+            let Item=document.createElement('div')
+            Item.classList.add('songItem')
+            Item.innerHTML=`
+            <img alt="1" src="${songs[i].coverPath}">
+            <span>${songs[i].songName}</span>
+            <span class="songlistplay"><span class="timestamp">${songDuration}<i class="fa-regular fa-circle-play "></i></span></span>`
+            songItemsContainer.appendChild(Item)
+        })
+    }
+}
+SongAdd()
+
+
 
 //Handle Play/pause button
 function MasterBtnplay(){
@@ -116,7 +140,8 @@ ProgressBar.addEventListener('change',()=>{
 
 
 //Applying playbutton functions
-songItem.forEach((element)=>{
+function ApplyPlayBtnFunc(){
+    songItem.forEach((element)=>{
     element.children[2].firstElementChild.firstElementChild.addEventListener('click',(e)=>{
         if(audioElement.paused){
             if(songIndex!=(songItem.indexOf(e.currentTarget.parentElement.parentElement.parentElement))){
@@ -155,6 +180,8 @@ songItem.forEach((element)=>{
         }
     })
 })
+}
+
 
 //Applying Backward and forward Btn Functions
 
@@ -213,3 +240,10 @@ MasterPlayBtn.nextElementSibling.addEventListener('click',()=>{
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
     }
 })
+
+
+//Giving the application proper time to load all metadata of songs before defining songItem
+setTimeout(()=>{
+    songItem=Array.from(songItemsContainer.children)
+    ApplyPlayBtnFunc()
+},3000)
