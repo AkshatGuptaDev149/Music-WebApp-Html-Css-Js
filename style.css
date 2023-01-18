@@ -6,7 +6,7 @@
 }
 body{
     background-color:antiquewhite ;
-    background-image: url(background.jpg);
+    background-image: url(Images/background.jpg);
     background-size:1366px;
 }
 nav{
@@ -77,6 +77,17 @@ div.container{
 }
 .songList{
     width: 50%;
+}
+
+#loading{
+    background-color: white;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
 }
 
 .songList h1{
@@ -153,6 +164,9 @@ div.container{
 
 
 @media all and (max-width:425px){
+    .CurrentSong{
+        display: none;
+    }
     .songList{
         width: 100%;
     }   

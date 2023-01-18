@@ -6,6 +6,7 @@ var songIndex=0;
 let MasterPlayBtn=document.getElementById('MasterPlay');
 let ProgressBar=document.getElementById('ProgressBar');
 let songItem;
+let loading=document.getElementById('loading');
 let loopBtn=document.getElementById('loop');
 let songItemsContainer=document.getElementById('songItemsContainer');
 let BottomLine=document.getElementById('songInfo');
@@ -24,32 +25,33 @@ let songs=[
 ]
 let audioElement= new Audio(songs[songIndex].filePath);
 
-function toArray(x) {
-    for(var i = 0, a = []; i < x.length; i++)
-        a.push(x[i]);
 
-    return a
-}
 
 //Function for adding songItems
-async function SongAdd(){
+async function AddDuration(){
     for(let i=0;i<songs.length;i++){
-        let testAudio=new Audio(songs[i].filePath)
-        testAudio.onloadedmetadata=await (()=>{
-            let Minutes=Math.floor(testAudio.duration/60)
-            let Seconds=(Math.floor(testAudio.duration)%60)
-            let songDuration=Minutes +":"+ (Seconds<10? '0'+Seconds:Seconds)
-            let Item=document.createElement('div')
-            Item.classList.add('songItem')
-            Item.innerHTML=`
-            <img alt="1" src="${songs[i].coverPath}">
-            <span>${songs[i].songName}</span>
-            <span class="songlistplay"><span class="timestamp">${songDuration}<i class="fa-regular fa-circle-play "></i></span></span>`
-            songItemsContainer.appendChild(Item)
-        })
+            let testAudio=new Audio(songs[i].filePath)
+                testAudio.onloadedmetadata=await (()=>{
+                let Minutes=Math.floor(testAudio.duration/60)
+                let Seconds=(Math.floor(testAudio.duration)%60)
+                let songDuration=Minutes +":"+ (Seconds<10? '0'+Seconds:Seconds)
+                songs[i].duration=songDuration
+            })
+        }
+}
+AddDuration()
+
+function songAdd(){
+    for(let i=0;i<songs.length;i++){
+    let Item=document.createElement('div')
+    Item.classList.add('songItem')
+    Item.innerHTML=`
+    <img alt="1" src="${songs[i].coverPath}">
+    <span>${songs[i].songName}</span>
+    <span class="songlistplay"><span class="timestamp">${songs[i].duration}<i class="fa-regular fa-circle-play "></i></span></span>`
+    songItemsContainer.appendChild(Item)
     }
 }
-SongAdd()
 
 
 
@@ -108,6 +110,7 @@ loopBtn.addEventListener('click',()=>{
 audioElement.addEventListener('timeupdate',()=>{
     //Update Seekbar
     let progress=parseInt((audioElement.currentTime/audioElement.duration)*100)
+
     ProgressBar.value=progress;
     if(progress==100){
         if(loopBtn.dataset.state=='off'){ //checking loop button on or off 
@@ -244,6 +247,8 @@ MasterPlayBtn.nextElementSibling.addEventListener('click',()=>{
 
 //Giving the application proper time to load all metadata of songs before defining songItem
 setTimeout(()=>{
+    loading.style.display='none'
+    songAdd()
     songItem=Array.from(songItemsContainer.children)
     ApplyPlayBtnFunc()
-},3000)
+},3100)
