@@ -6,10 +6,18 @@ var songIndex=0;
 let MasterPlayBtn=document.getElementById('MasterPlay');
 let ProgressBar=document.getElementById('ProgressBar');
 let songItem;
+let marquee=document.getElementById('marq')
+let PlayGif=document.getElementById('PlayGif')
 let loading=document.getElementById('loading');
+let CurrentImage=document.getElementById('CurrentImage')
 let loopBtn=document.getElementById('loop');
 let songItemsContainer=document.getElementById('songItemsContainer');
 let BottomLine=document.getElementById('songInfo');
+
+
+
+
+
 let songs=[
     {songName:'Bleach OST Treachery',filePath:'songs/Aizen theme.mp3',coverPath:'coverImages/cover1.png'},
     {songName:'Bleach OST Number one ones else',filePath:'songs/Number one ones else.mp3',coverPath:'coverImages/cover1.png'},
@@ -25,6 +33,8 @@ let songs=[
 ]
 let audioElement= new Audio(songs[songIndex].filePath);
 
+marquee.textContent=songs[0].songName
+BottomLine.lastElementChild.textContent=songs[0].songName
 
 
 //Function for adding songItems
@@ -60,12 +70,14 @@ function MasterBtnplay(){
     MasterPlayBtn.classList.remove('fa-circle-play');
     MasterPlayBtn.classList.add('fa-circle-pause');
     BottomLine.firstElementChild.style.opacity=1;
+    PlayGif.style.opacity=1;
 }
 
 function MasterBtnpause(){
     MasterPlayBtn.classList.remove('fa-circle-pause');
     MasterPlayBtn.classList.add('fa-circle-play');
     BottomLine.firstElementChild.style.opacity=0;
+    PlayGif.style.opacity=0;
 }
 
 function changePlaytoPause(){
@@ -117,15 +129,19 @@ audioElement.addEventListener('timeupdate',()=>{
             changePausetoPlay();
             if(songIndex==(songItem.length-1)){
                 songIndex=0
+                CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
                 audioElement.src=songs[songIndex].filePath     
                 BottomLine.lastElementChild.textContent=songs[songIndex].songName
+                marquee.textContent=songs[songIndex].songName
                 audioElement.play();
                 changePlaytoPause();
             }
             else if(songIndex<songItem.length){
                 songIndex+=1
+                CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
                 audioElement.src=songs[songIndex].filePath     
                 BottomLine.lastElementChild.textContent=songs[songIndex].songName
+                marquee.textContent=songs[songIndex].songName
                 audioElement.play();
                 changePlaytoPause();
             }
@@ -152,8 +168,10 @@ function ApplyPlayBtnFunc(){
                 e.currentTarget.classList.remove('fa-circle-play');
                 e.currentTarget.classList.add('fa-circle-pause');
                 songIndex=songItem.indexOf(e.currentTarget.parentElement.parentElement.parentElement);
+                CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
                 audioElement.src=songs[songIndex].filePath     
                 BottomLine.lastElementChild.textContent=songs[songIndex].songName
+                marquee.textContent=songs[songIndex].songName
                 audioElement.play();
             }
             else{
@@ -170,8 +188,10 @@ function ApplyPlayBtnFunc(){
                 e.currentTarget.classList.add('fa-circle-pause');
                 MasterBtnplay();
                 songIndex=songItem.indexOf(e.currentTarget.parentElement.parentElement.parentElement);
+                CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
                 audioElement.src=songs[songIndex].filePath     
                 BottomLine.lastElementChild.textContent=songs[songIndex].songName
+                marquee.textContent=songs[songIndex].songName
                 audioElement.play();
             }
             else{
@@ -192,27 +212,35 @@ MasterPlayBtn.previousElementSibling.addEventListener('click',()=>{
     changePausetoPlay();   
     if(songIndex<=0 && !(audioElement.paused)){
         songIndex=(songItem.length)-1
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
         audioElement.play();
         changePlaytoPause();
     }
     else if(songIndex<=0 && audioElement.paused){
         songIndex=(songItem.length)-1
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
     }
     else if(songIndex>0 && !(audioElement.paused)){
         songIndex-=1
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
         audioElement.play();
         changePlaytoPause();
     }    
     else if(songIndex>0 && audioElement.paused){
         songIndex-=1
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
     }
 })
 
@@ -220,27 +248,35 @@ MasterPlayBtn.nextElementSibling.addEventListener('click',()=>{
     changePausetoPlay();   
     if(songIndex==(songItem.length-1) && !(audioElement.paused)){
         songIndex=0
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
         audioElement.play();
         changePlaytoPause();
     }
     else if(songIndex==(songItem.length-1) && (audioElement.paused)){
         songIndex=0
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
     }
     else if(songIndex<songItem.length && !(audioElement.paused)){
         songIndex+=1
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
         audioElement.play();
         changePlaytoPause();
     }    
     else if(songIndex<songItem.length && audioElement.paused){
         songIndex+=1
+        CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
         audioElement.src=songs[songIndex].filePath     
         BottomLine.lastElementChild.textContent=songs[songIndex].songName
+        marquee.textContent=songs[songIndex].songName
     }
 })
 
@@ -248,6 +284,9 @@ MasterPlayBtn.nextElementSibling.addEventListener('click',()=>{
 //Giving the application proper time to load all metadata of songs before defining songItem
 setTimeout(()=>{
     loading.style.display='none'
+    CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
+    CurrentImage.style.opacity=1
+    marquee.style.opacity=1
     songAdd()
     songItem=Array.from(songItemsContainer.children)
     ApplyPlayBtnFunc()
