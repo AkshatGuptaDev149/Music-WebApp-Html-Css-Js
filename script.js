@@ -293,4 +293,4 @@ setTimeout(()=>{
     songAdd()
     songItem=Array.from(songItemsContainer.children)
     ApplyPlayBtnFunc()
-},4000)
+},8000)
