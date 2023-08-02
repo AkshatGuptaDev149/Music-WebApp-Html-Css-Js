@@ -19,16 +19,19 @@ let BottomLine=document.getElementById('songInfo');
 
 
 let songs=[
-    {songName:'Bleach OST Treachery',filePath:'songs/Aizen theme.mp3',coverPath:'coverImages/cover1.png'},
-    {songName:'Bleach OST Number one ones else',filePath:'songs/Number one ones else.mp3',coverPath:'coverImages/cover1.png'},
-    {songName:'Bleach OST Cometh of the hour B',filePath:'songs/Ichigo vs Ginjo Theme Song.mp3',coverPath:'coverImages/cover1.png'},
+    {songName:'DemonSlayerS3-Kizuna No Kiseki',filePath:'songs/DemonSlayerS3-Kizuna No Kiseki.mp3',coverPath:'coverImages/DemonSlayerS3.jpg'},
+    {songName:'MushokuTenseiS2 OP Longman spiral',filePath:'songs/MushokuTenseiS2 OP Longman spiral.mp3',coverPath:'coverImages/coverM.png'},
+    {songName:'MushokuTenseiS2 ED Yuiko Musubime ',filePath:'songs/MushokuTenseiS2 Ending Musubime YuikoOhara.mp3',coverPath:'coverImages/coverM.png'},
+    {songName:'TheFatRat The Calling',filePath:'songs/TheFatRat The Calling.mp3',coverPath:'coverImages/default.png'},
     {songName:'Ainsi bas la vida',filePath:'songs/Ainsi bas la vida.mp3',coverPath:'coverImages/cover3.jpg'},
     {songName:'Dragon Ball Z - Cha La Head Cha La',filePath:'songs/Dragon Ball Z - Cha La Head Cha La.mp3',coverPath:'coverImages/cover2.png'},
     {songName:'Bleach OST Cokkaku',filePath:'songs/Bleach OST chokkaku.mp3',coverPath:'coverImages/cover1.png'},
-    {songName:'Bleach TYBW-Scar',filePath:'songs/Bleach TYBW scar.mp3',coverPath:'coverImages/cover4.png'},
+    {songName:'DBS UltimateBattle OST',filePath:'songs/DBS UltimateBattle OST.mp3',coverPath:'coverImages/cover2.png'},
+    {songName:'Where our Blue is-JJ Kaisen S2',filePath:'songs/Where our blue is.mp3',coverPath:'coverImages/JJ S2 Cover.jpg'},
     {songName:'Bleach TYBW-Rapport',filePath:'songs/Bleach TYBW rapport.mp3',coverPath:'coverImages/cover4.png'},
     {songName:'Jujutsu Kaisen 0 Ichizu By KingGnu',filePath:'songs/Jujutsu Kaisen 0 Ichizu By KingGnu.mp3',coverPath:'coverImages/cover5.jpg'},
-    {songName:'Something just like this',filePath:'songs/Something just like this.mp3',coverPath:'coverImages/default.png'},
+    {songName:'Perfect time',filePath:'songs/Perfect time.mp3',coverPath:'coverImages/default.png'},
+    {songName:'Dance In The Game Classroom of the Elite Season 2 Opening',filePath:'songs/Dance In The Game Classroom of the Elite Season 2 Opening.mp3',coverPath:'coverImages/cover6.png'},
     {songName:'Bleach TYBW number one',filePath:'songs/Bleach TYBW number one.mp3',coverPath:'coverImages/cover4.png'}
 ]
 let audioElement= new Audio(songs[songIndex].filePath);
