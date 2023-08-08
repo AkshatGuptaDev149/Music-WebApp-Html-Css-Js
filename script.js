@@ -39,32 +39,44 @@ let audioElement= new Audio(songs[songIndex].filePath);
 marquee.textContent=songs[0].songName
 BottomLine.lastElementChild.textContent=songs[0].songName
 
+//Function to remove loadscreen and launch the application
+function Launch(){
+    loading.style.display='none'
+    CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
+    CurrentImage.style.opacity=1
+    marquee.style.opacity=1
+    songItem=Array.from(songItemsContainer.children)
+    ApplyPlayBtnFunc()
+}
+//This Launch function is run after all songItems will be added by the next function 
+
 
 //Function for adding songItems
-async function AddDuration(){
+async function AddSongs(){
     for(let i=0;i<songs.length;i++){
             let testAudio=new Audio(songs[i].filePath)
-                testAudio.onloadedmetadata=await (()=>{
-                let Minutes=Math.floor(testAudio.duration/60)
-                let Seconds=(Math.floor(testAudio.duration)%60)
-                let songDuration=Minutes +":"+ (Seconds<10? '0'+Seconds:Seconds)
-                songs[i].duration=songDuration
-            })
+            let promise= new Promise((resolve, reject) => { 
+                testAudio.onloadedmetadata=()=>{resolve(testAudio.duration)}
+             })
+            let duration=await promise;
+            let Minutes=Math.floor(duration/60)
+            let Seconds=(Math.floor(duration)%60)
+            let songDuration=Minutes +":"+ (Seconds<10? '0'+Seconds:Seconds)
+            songs[i].duration=songDuration
+            let Item=document.createElement('div')
+            Item.classList.add('songItem')
+            Item.innerHTML=`
+            <img alt="1" src="${songs[i].coverPath}">
+            <span>${songs[i].songName}</span>
+            <span class="songlistplay"><span class="timestamp">${songs[i].duration}<i class="fa-regular fa-circle-play "></i></span></span>`
+            songItemsContainer.appendChild(Item)
         }
+    Launch()    
+        
 }
-AddDuration()
+AddSongs()
 
-function songAdd(){
-    for(let i=0;i<songs.length;i++){
-    let Item=document.createElement('div')
-    Item.classList.add('songItem')
-    Item.innerHTML=`
-    <img alt="1" src="${songs[i].coverPath}">
-    <span>${songs[i].songName}</span>
-    <span class="songlistplay"><span class="timestamp">${songs[i].duration}<i class="fa-regular fa-circle-play "></i></span></span>`
-    songItemsContainer.appendChild(Item)
-    }
-}
+
 
 
 
@@ -284,13 +296,3 @@ MasterPlayBtn.nextElementSibling.addEventListener('click',()=>{
 })
 
 
-//Giving the application proper time to load all metadata of songs before defining songItem
-setTimeout(()=>{
-    loading.style.display='none'
-    CurrentImage.firstElementChild.setAttribute('src',songs[songIndex].coverPath)
-    CurrentImage.style.opacity=1
-    marquee.style.opacity=1
-    songAdd()
-    songItem=Array.from(songItemsContainer.children)
-    ApplyPlayBtnFunc()
-},8000)
