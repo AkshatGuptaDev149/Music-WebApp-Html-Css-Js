@@ -28,9 +28,11 @@ let songs=[
     {songName:'Bleach OST Cokkaku',filePath:'songs/Bleach OST chokkaku.mp3',coverPath:'coverImages/cover1.png'},
     {songName:'DBS UltimateBattle OST',filePath:'songs/DBS UltimateBattle OST.mp3',coverPath:'coverImages/cover2.png'},
     {songName:'Where our Blue is-JJ Kaisen S2',filePath:'songs/Where our blue is.mp3',coverPath:'coverImages/JJ S2 Cover.jpg'},
+    {songName:'Jujutsu Kaisen S2OP SpecialZ',filePath:'songs/Jujutsu Kaisen S2OP SpecialZ.mp3',coverPath:'coverImages/JJ S2 Cover2.jpg'},	
     {songName:'Bleach TYBW-Rapport',filePath:'songs/Bleach TYBW rapport.mp3',coverPath:'coverImages/cover4.png'},
     {songName:'Jujutsu Kaisen 0 Ichizu By KingGnu',filePath:'songs/Jujutsu Kaisen 0 Ichizu By KingGnu.mp3',coverPath:'coverImages/cover5.jpg'},
     {songName:'Perfect time',filePath:'songs/Perfect time.mp3',coverPath:'coverImages/default.png'},
+    {songName:'Maboroshi theme song Shin On',filePath:'songs/Maboroshi theme song Shin On.mp3',coverPath:'coverImages/MaboroshiCover.jpg'},
     {songName:'Dance In The Game Classroom of the Elite Season 2 Opening',filePath:'songs/Dance In The Game Classroom of the Elite Season 2 Opening.mp3',coverPath:'coverImages/cover6.png'},
     {songName:'Bleach TYBW number one',filePath:'songs/Bleach TYBW number one.mp3',coverPath:'coverImages/cover4.png'}
 ]
